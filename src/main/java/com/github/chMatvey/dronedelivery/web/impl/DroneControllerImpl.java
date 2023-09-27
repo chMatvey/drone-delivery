@@ -1,12 +1,14 @@
-package com.github.chMatvey.dronedelivery.web;
+package com.github.chMatvey.dronedelivery.web.impl;
 
+import com.github.chMatvey.dronedelivery.web.DroneController;
 import com.github.chMatvey.dronedelivery.web.dto.*;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
-@RestController("/api/v1/drone")
+@RestController
+@RequestMapping("/api/v1/drones")
 public class DroneControllerImpl implements DroneController {
     @PostMapping("/register")
     @Override

@@ -9,6 +9,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         default_schema: drone
+        format_sql: true
+    show-sql: "${SHOW_SQL:false}"
   datasource:
     url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:drone}"
     driver-class-name: org.postgresql.Driver

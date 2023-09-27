@@ -1,5 +1,6 @@
 package com.github.chMatvey.dronedelivery.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -11,5 +12,6 @@ public enum DroneModel {
     CRUISERWEIGHT("Cruiserweight"),
     HEAVYWEIGHT("Heavyweight");
 
+    @JsonValue
     private final String value;
 }
