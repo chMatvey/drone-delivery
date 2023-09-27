@@ -1,0 +1,34 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+
+  drone-delivery-service:
+    build: .
+    container_name: drone-delivery-service
+    environment:
+      DB_HOST: postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+
+volumes:
+  postgres:
+
+networks:
+  postgres:
+    driver: bridge

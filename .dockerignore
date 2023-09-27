@@ -1,0 +1,12 @@
+.git
+.gitignore
+.gradle
+.idea
+
+build
+
+database-chema.png
+database-schema.txt
+docker-compose.yml
+README.md
+
