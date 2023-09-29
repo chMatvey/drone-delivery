@@ -6,8 +6,6 @@
 build
 database
 
-database-chema.png
-database-schema.txt
 docker-compose.yml
 README.md
 

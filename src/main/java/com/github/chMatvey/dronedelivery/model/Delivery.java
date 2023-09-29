@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -38,7 +39,7 @@ public class Delivery {
     @JoinColumn(name = "drone_id", referencedColumnName = "id")
     Drone drone;
 
-    @ManyToMany
+    @ManyToMany(fetch = LAZY)
     @JoinTable(
             name = "delivery_items",
             joinColumns = @JoinColumn(name = "delivery_id"),

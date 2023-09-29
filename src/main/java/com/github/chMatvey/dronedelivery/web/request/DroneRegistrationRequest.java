@@ -1,13 +1,13 @@
-package com.github.chMatvey.dronedelivery.web.dto;
+package com.github.chMatvey.dronedelivery.web.request;
 
 import com.github.chMatvey.dronedelivery.model.DroneModel;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
+import lombok.Builder;
 
+@Builder
 public record DroneRegistrationRequest(
         @NotBlank
+        @Size(max = 100)
         String serialNumber,
 
         @NotNull

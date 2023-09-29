@@ -1,4 +1,4 @@
-package com.github.chMatvey.dronedelivery.web.dto;
+package com.github.chMatvey.dronedelivery.web.response;
 
 import jakarta.validation.constraints.NotNull;
 

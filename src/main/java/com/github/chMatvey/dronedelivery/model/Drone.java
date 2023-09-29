@@ -1,7 +1,9 @@
 package com.github.chMatvey.dronedelivery.model;
 
+import com.github.chMatvey.dronedelivery.model.converter.DroneModelConverter;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,6 +16,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @Builder
 @FieldDefaults(level = PRIVATE)
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -27,7 +30,7 @@ public class Drone {
     @Column(name = "serial_number", nullable = false)
     String serialNumber;
 
-    @Enumerated(STRING)
+    @Convert(converter = DroneModelConverter.class)
     @Column(nullable = false)
     DroneModel model;
 

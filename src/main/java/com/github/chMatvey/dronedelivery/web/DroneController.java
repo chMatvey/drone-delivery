@@ -1,6 +1,8 @@
 package com.github.chMatvey.dronedelivery.web;
 
-import com.github.chMatvey.dronedelivery.web.dto.*;
+import com.github.chMatvey.dronedelivery.web.request.DroneRegistrationRequest;
+import com.github.chMatvey.dronedelivery.web.request.MedicationsLoadRequest;
+import com.github.chMatvey.dronedelivery.web.response.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -19,7 +21,7 @@ public interface DroneController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Medications successfully loaded to drone"),
             @ApiResponse(responseCode = "400", description = "Invalid parameters"),
-            @ApiResponse(responseCode = "404", description = "Drone not found by id"),
+            @ApiResponse(responseCode = "404", description = "Drone or medication not found by id"),
             @ApiResponse(responseCode = "409", description = "Can not load medications. Drone state is not IDLE.")
     })
     MedicationsLoadResponse loadMedicationItems(int droneId, MedicationsLoadRequest request);
@@ -29,10 +31,10 @@ public interface DroneController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Drone not found by id")
     })
-    MedicationsLoadedResponse getLoadedMedicationToDone(int droneId);
+    MedicationsLoadedResponse getLoadedMedication(int droneId);
 
     @Operation(summary = "Get available for loading drones")
-    DronesAvailableResponse getAvailableDrones();
+    AvailableDronesResponse getAvailableDrones();
 
     @Operation(summary = "Get drone battery level")
     @ApiResponses({

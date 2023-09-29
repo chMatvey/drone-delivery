@@ -1,4 +1,4 @@
-package com.github.chMatvey.dronedelivery.exception;
+package com.github.chMatvey.dronedelivery.service.exception;
 
 public class MedicationImageNotFoundException extends RuntimeException {
     public MedicationImageNotFoundException() {
