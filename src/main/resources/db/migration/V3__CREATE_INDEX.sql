@@ -1,0 +1,1 @@
+create index deliveries_drone_id on deliveries (drone_id) where completed = false;
