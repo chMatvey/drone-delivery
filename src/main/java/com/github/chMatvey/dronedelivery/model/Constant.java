@@ -15,4 +15,6 @@ public class Constant {
             DELIVERED,
             RETURNING
     );
+
+    public static final int MIN_BATTERY_LEVEL = 25;
 }

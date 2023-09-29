@@ -25,3 +25,8 @@ spring:
 logging:
   level:
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+audit:
+  drone:
+    cron: "*/30 * * * * *" # every 30 seconds
+

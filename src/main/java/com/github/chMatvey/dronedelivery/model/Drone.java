@@ -47,4 +47,11 @@ public class Drone {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     LocalDateTime createdAt;
+
+    public DroneAudit createAudit() {
+        return DroneAudit.builder()
+                .drone(this)
+                .batteryLevel(batteryCapacity)
+                .build();
+    }
 }

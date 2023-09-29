@@ -7,6 +7,7 @@ import com.github.chMatvey.dronedelivery.repository.DroneRepository;
 import com.github.chMatvey.dronedelivery.repository.MedicationRepository;
 import com.github.chMatvey.dronedelivery.service.DeliveryService;
 import com.github.chMatvey.dronedelivery.service.data.DeliveryCreation;
+import com.github.chMatvey.dronedelivery.service.exception.DroneBatteryLevelTooLowException;
 import com.github.chMatvey.dronedelivery.service.exception.DroneNotFoundException;
 import com.github.chMatvey.dronedelivery.service.exception.MedicationsWeightOverTheLimitException;
 import com.github.chMatvey.dronedelivery.web.request.DroneRegistrationRequest;
@@ -104,6 +105,18 @@ class DroneServiceImplTest {
 
         // Then
         assertThrows(MedicationsWeightOverTheLimitException.class, () -> droneService.loadMedicationItems(drone.getId(), request));
+    }
+
+    @Test
+    void shouldFailLoadMedicationWhenBatteryLevelBelowMinNumber() {
+        // Given
+        MedicationsLoadRequest request = medicationsLoadRequest();
+        Drone drone = droneInIdleState().setBatteryCapacity(20);
+
+        when(droneRepository.findById(drone.getId())).thenReturn(Optional.of(drone));
+
+        // Then
+        assertThrows(DroneBatteryLevelTooLowException.class, () -> droneService.loadMedicationItems(drone.getId(), request));
     }
 
     @DisplayName("Should successfully get loaded medications")

@@ -8,10 +8,7 @@ import com.github.chMatvey.dronedelivery.repository.MedicationRepository;
 import com.github.chMatvey.dronedelivery.service.DeliveryService;
 import com.github.chMatvey.dronedelivery.service.DroneService;
 import com.github.chMatvey.dronedelivery.service.data.DeliveryCreation;
-import com.github.chMatvey.dronedelivery.service.exception.DroneNotFoundException;
-import com.github.chMatvey.dronedelivery.service.exception.MedicationNotFoundException;
-import com.github.chMatvey.dronedelivery.service.exception.MedicationsWeightOverTheLimitException;
-import com.github.chMatvey.dronedelivery.service.exception.UnexpectedDroneStatusException;
+import com.github.chMatvey.dronedelivery.service.exception.*;
 import com.github.chMatvey.dronedelivery.web.request.DroneRegistrationRequest;
 import com.github.chMatvey.dronedelivery.web.request.MedicationsLoadRequest;
 import com.github.chMatvey.dronedelivery.web.response.*;
@@ -25,8 +22,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.github.chMatvey.dronedelivery.model.Constant.MAX_BATTERY_CAPACITY;
-import static com.github.chMatvey.dronedelivery.model.Constant.NO_MEDICATIONS_STATES;
+import static com.github.chMatvey.dronedelivery.model.Constant.*;
 import static com.github.chMatvey.dronedelivery.model.DroneState.IDLE;
 import static java.util.Optional.ofNullable;
 
@@ -58,6 +54,8 @@ public class DroneServiceImpl implements DroneService {
         Drone drone = droneRepository.findById(droneId).orElseThrow(DroneNotFoundException::new);
         if (drone.getState() != IDLE)
             throw new UnexpectedDroneStatusException();
+        if (drone.getBatteryCapacity() < MIN_BATTERY_LEVEL)
+            throw new DroneBatteryLevelTooLowException();
 
         List<Medication> medications = extractMedications(request.medicationsIds());
 
