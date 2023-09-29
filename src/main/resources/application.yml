@@ -21,3 +21,7 @@ spring:
     schemas: drone
     create-schemas: true
     baseline-version: 1
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
