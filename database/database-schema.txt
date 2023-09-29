@@ -36,6 +36,7 @@ Table deliveries {
 Table delivery_items {
   delivery_id integer
   medication_id integer
+  count integer
 }
 
 Ref: deliveries.drone_id > drones.id

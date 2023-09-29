@@ -1,6 +1,7 @@
 package com.github.chMatvey.dronedelivery.service.impl;
 
 import com.github.chMatvey.dronedelivery.model.Delivery;
+import com.github.chMatvey.dronedelivery.model.DeliveryItem;
 import com.github.chMatvey.dronedelivery.model.Drone;
 import com.github.chMatvey.dronedelivery.model.Medication;
 import com.github.chMatvey.dronedelivery.repository.DeliveryRepository;
@@ -13,8 +14,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.github.chMatvey.dronedelivery.model.DroneState.LOADING;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
 
 @Service
 @RequiredArgsConstructor
@@ -31,10 +35,16 @@ public class DeliveryServiceImpl implements DeliveryService {
                 .availableWeightCapacity(deliveryCreation.availableWeightCapacity())
                 .completed(false)
                 .drone(drone)
-                .medications(deliveryCreation.medications())
                 .build();
 
-        return deliveryRepository.save(delivery);
+        List<DeliveryItem> deliveryItems = deliveryCreation.medications().stream()
+                .collect(Collectors.groupingBy(identity(), counting()))
+                .entrySet()
+                .stream()
+                .map(delivery::createDeliveryItem)
+                .toList();
+
+        return deliveryRepository.save(delivery.setDeliveryItems(deliveryItems));
     }
 
     @Override

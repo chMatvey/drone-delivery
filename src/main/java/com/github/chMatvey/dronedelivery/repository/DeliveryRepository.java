@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
     Optional<Delivery> findOneByDroneAndCompletedFalse(Drone drone);
 
-    @Query("select delivery from Delivery delivery join fetch delivery.medications where delivery.completed = false and delivery.drone = ?1")
+    @Query("select delivery from Delivery delivery join fetch delivery.deliveryItems where delivery.completed = false and delivery.drone = ?1")
     Optional<Delivery> findOneByDroneAndCompletedFalseJoinMedications(Drone drone);
 }

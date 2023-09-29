@@ -5,13 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
+import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 import static lombok.AccessLevel.PRIVATE;
@@ -19,6 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @Builder
 @FieldDefaults(level = PRIVATE)
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -39,12 +43,8 @@ public class Delivery {
     @JoinColumn(name = "drone_id", referencedColumnName = "id")
     Drone drone;
 
-    @ManyToMany(fetch = LAZY)
-    @JoinTable(
-            name = "delivery_items",
-            joinColumns = @JoinColumn(name = "delivery_id"),
-            inverseJoinColumns = @JoinColumn(name = "medication_id"))
-    List<Medication> medications;
+    @OneToMany(fetch = LAZY, mappedBy = "delivery", cascade = ALL)
+    List<DeliveryItem> deliveryItems;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -53,4 +53,18 @@ public class Delivery {
     @UpdateTimestamp
     @Column(name = "updated_at")
     LocalDateTime updatedAt;
+
+    public List<Medication> getMedications() {
+        return deliveryItems.stream()
+                .flatMap(DeliveryItem::toMedicationsStream)
+                .toList();
+    }
+
+    public DeliveryItem createDeliveryItem(Map.Entry<Medication, Long> medicationPerCount) {
+        return DeliveryItem.builder()
+                .delivery(this)
+                .medication(medicationPerCount.getKey())
+                .count(medicationPerCount.getValue().intValue())
+                .build();
+    }
 }
