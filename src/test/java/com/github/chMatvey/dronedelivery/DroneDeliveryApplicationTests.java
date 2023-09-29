@@ -1,13 +1,10 @@
 package com.github.chMatvey.dronedelivery;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class DroneDeliveryApplicationTests {
+class DroneDeliveryApplicationTests extends PostgresContainerTest {
 
 	@Test
 	void contextLoads() {
 	}
-
 }

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: drone-delivery-service
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: drone
+        format_sql: true
+    show-sql: true
+  flyway:
+    enabled: true
+    schemas: drone
+    create-schemas: true
+    baseline-version: 1
