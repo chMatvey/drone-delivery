@@ -26,6 +26,9 @@ logging:
   level:
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 
+springdoc:
+  override-with-generic-response: false
+
 audit:
   drone:
     cron: "*/30 * * * * *" # every 30 seconds

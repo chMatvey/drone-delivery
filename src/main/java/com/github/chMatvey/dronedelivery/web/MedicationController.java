@@ -57,14 +57,14 @@ public interface MedicationController {
     @Operation(summary = "Download medication image")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Medication image not found by medication Id")
+            @ApiResponse(responseCode = "404", description = "Medication image not found by medicationId")
     })
     ResponseEntity<?> downloadMedicationImage(int medicationId);
 
     @Operation(summary = "Download medication image")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Medication image not found by medication Id"),
+            @ApiResponse(responseCode = "404", description = "Medication not found by medicationId"),
             @ApiResponse(responseCode = "413", description = "Content Too Large")
     })
     void uploadMedicationImage(int medicationId, MultipartFile file) throws IOException;

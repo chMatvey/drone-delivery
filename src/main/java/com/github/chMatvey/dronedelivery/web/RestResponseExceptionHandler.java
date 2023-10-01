@@ -49,6 +49,13 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
         return new ErrorResponse(e.getMessage());
     }
 
+    @ExceptionHandler(DroneBatteryLevelTooLowException.class)
+    @ResponseStatus(BAD_REQUEST)
+    public ErrorResponse handleDroneBatteryLevelTooLowException(DroneBatteryLevelTooLowException e) {
+        log.warn(e.getMessage());
+        return new ErrorResponse(e.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ResponseBody

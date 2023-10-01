@@ -1,19 +1,21 @@
 package com.github.chMatvey.dronedelivery;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import com.github.chMatvey.dronedelivery.service.DroneAuditService;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
+@Testcontainers
 @SpringBootTest
-public class PostgresContainerTest {
+public abstract class PostgresContainerTest {
+    @MockBean
+    DroneAuditService droneAChudakouditService;
+
     static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>(DockerImageName.parse("postgres:15-alpine"))
             .withDatabaseName("drone")
             .withUsername("sa")
@@ -21,14 +23,8 @@ public class PostgresContainerTest {
             .withUrlParam("currentSchema", "drone")
             .withCopyFileToContainer(MountableFile.forClasspathResource("/images"), "/tmp/images");
 
-    @BeforeAll
-    static void beforeAll() {
+    static {
         postgresContainer.start();
-    }
-
-    @AfterAll
-    static void afterAll() {
-        postgresContainer.stop();
     }
 
     @DynamicPropertySource

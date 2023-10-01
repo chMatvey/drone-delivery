@@ -16,3 +16,7 @@ spring:
     schemas: drone
     create-schemas: true
     baseline-version: 1
+
+audit:
+  drone:
+    cron: "0 * * * * *"

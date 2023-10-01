@@ -24,14 +24,14 @@ public class DroneControllerImpl implements DroneController {
         return droneService.registerDrone(request);
     }
 
-    @PostMapping("/medications/{droneId}")
+    @PostMapping("/{droneId}/medications")
     @Override
-    public MedicationsLoadResponse loadMedicationItems(@PathVariable int droneId,
-                                                       @RequestBody @Valid MedicationsLoadRequest request) {
+    public MedicationsLoadResponse loadMedication(@PathVariable int droneId,
+                                                  @RequestBody @Valid MedicationsLoadRequest request) {
         return droneService.loadMedicationItems(droneId, request);
     }
 
-    @GetMapping("/medications/{droneId}")
+    @GetMapping("/{droneId}/medications")
     @Override
     public MedicationsLoadedResponse getLoadedMedication(@PathVariable int droneId) {
         return droneService.getLoadedMedication(droneId);

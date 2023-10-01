@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.test.web.servlet.MockMvc;
 
 @AutoConfigureMockMvc
-public class BaseControllerTest extends PostgresContainerTest {
+public abstract class BaseControllerTest extends PostgresContainerTest {
     @Autowired
     protected MockMvc mockMvc;
 

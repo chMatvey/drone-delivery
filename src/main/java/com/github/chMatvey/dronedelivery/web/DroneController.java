@@ -24,7 +24,7 @@ public interface DroneController {
             @ApiResponse(responseCode = "404", description = "Drone or medication not found by id"),
             @ApiResponse(responseCode = "409", description = "Can not load medications. Drone state is not IDLE.")
     })
-    MedicationsLoadResponse loadMedicationItems(int droneId, MedicationsLoadRequest request);
+    MedicationsLoadResponse loadMedication(int droneId, MedicationsLoadRequest request);
 
     @Operation(summary = "Get loaded medication items list from drone")
     @ApiResponses({

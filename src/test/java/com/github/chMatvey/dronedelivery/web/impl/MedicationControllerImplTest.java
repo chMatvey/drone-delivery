@@ -1,4 +1,4 @@
-package com.github.chMatvey.dronedelivery.web;
+package com.github.chMatvey.dronedelivery.web.impl;
 
 import com.github.chMatvey.dronedelivery.BaseControllerTest;
 import com.github.chMatvey.dronedelivery.model.Medication;
@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MedicationControllerTest extends BaseControllerTest {
+class MedicationControllerImplTest extends BaseControllerTest {
 
     @DisplayName("Should successfully created medication")
     @Test
@@ -58,7 +58,7 @@ class MedicationControllerTest extends BaseControllerTest {
     @DisplayName("Should cannot update medication because it not exist")
     @Test
     void partialUpdateMedicationNotFound() throws Exception {
-        int notExistedMedicationId = 1002;
+        int notExistedMedicationId = 2001;
 
         mockMvc.perform(patch("/api/v1/medications/{medicationId}", notExistedMedicationId)
                         .contentType(APPLICATION_JSON)

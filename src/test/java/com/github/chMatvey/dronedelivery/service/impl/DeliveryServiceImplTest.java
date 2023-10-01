@@ -6,6 +6,7 @@ import com.github.chMatvey.dronedelivery.model.Medication;
 import com.github.chMatvey.dronedelivery.repository.DeliveryRepository;
 import com.github.chMatvey.dronedelivery.repository.DroneRepository;
 import com.github.chMatvey.dronedelivery.service.data.DeliveryCreation;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -37,6 +38,7 @@ class DeliveryServiceImplTest {
     @Autowired
     DeliveryServiceImpl deliveryService;
 
+    @DisplayName("Should create delivery successfully")
     @Test
     void createDelivery() {
         // Given
