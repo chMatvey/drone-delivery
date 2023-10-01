@@ -69,4 +69,45 @@ While implementing your solution **please take care of the following requirement
 
 ---
 
+### Implementation
+
+#### Tech stack
+
+- Java 21
+- Gradle 8.4-rc-2
+- Spring Boot 3.1 
+- Postgres 15
+- Flyway 9.22
+- OpenApi (Swagger)
+- Junit 5
+- Testcontainers
+
+---
+
+#### Build
+
+Make sure that Docker installed and run
+
+    docker compose build
+
+#### Run
+
+    docker compose up -d
+
+---
+
+#### OpenApi (Swagger)
+
+[Swagger](http://localhost:8080/swagger-ui/index.html)
+
+---
+
+#### Database schema
+
+Preloaded data cn be found at resources/db/migration/V2__FILL_DATA.sql
+
+![Alt text](database/database-chema.png)
+
+---
+
 :scroll: **END**
