@@ -1,7 +1,5 @@
 ## Drones
 
-[[_TOC_]]
-
 ---
 
 :scroll: **START**
@@ -104,7 +102,7 @@ Make sure that Docker installed and run
 
 #### Database schema
 
-Preloaded data cn be found at resources/db/migration/V2__FILL_DATA.sql
+Preloaded data can be found at resources/db/migration/V2__FILL_DATA.sql
 
 ![Alt text](database/database-chema.png)
 
