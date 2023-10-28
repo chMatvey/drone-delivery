@@ -72,7 +72,7 @@ While implementing your solution **please take care of the following requirement
 #### Tech stack
 
 - Java 21
-- Gradle 8.4-rc-2
+- Gradle 8.4
 - Spring Boot 3.1 
 - Postgres 15
 - Flyway 9.22
@@ -91,6 +91,12 @@ Make sure that Docker installed and run
 #### Run
 
     docker compose up -d
+
+#### For development
+
+    docker compose up -d postgres
+
+Run app using IDEA
 
 ---
 
