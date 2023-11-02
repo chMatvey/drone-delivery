@@ -1,0 +1,1 @@
+CREATE DATABASE drone OWNER = postgres;

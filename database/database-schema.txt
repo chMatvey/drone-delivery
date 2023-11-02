@@ -16,13 +16,7 @@ Table medications {
   name varchar(100)
   weight integer
   code varchar(100)
-  image_id integer
   created_at timestamp
-}
-
-Table medications_images {
-  id integer [primary key]
-  data blob
 }
 
 Table deliveries {
@@ -40,14 +34,6 @@ Table delivery_items {
   count integer
 }
 
-Table drone_audit {
-  id integer
-  drone_id integer
-  battery_level integer
-}
-
 Ref: deliveries.drone_id > drones.id
-Ref: medications.image_id - medications_images.id
 Ref: delivery_items.delivery_id > deliveries.id
 Ref: delivery_items.medication_id > medications.id
-Ref: drone_audit.drone_id > drones.id
