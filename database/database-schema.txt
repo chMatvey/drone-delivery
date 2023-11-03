@@ -1,0 +1,39 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table drones {
+  id integer [primary key]
+  serial_number varchar(100)
+  model varchar(20)
+  weight_limit integer
+  battery_capacity integer
+  state varchar(20)
+  created_at timestamp
+}
+
+Table medications {
+  id integer [primary key]
+  name varchar(100)
+  weight integer
+  code varchar(100)
+  created_at timestamp
+}
+
+Table deliveries {
+  id integer [primary key]
+  drone_id integer
+  available_weight_capacity integer
+  completed boolean
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table delivery_items {
+  delivery_id integer
+  medication_id integer
+  count integer
+}
+
+Ref: deliveries.drone_id > drones.id
+Ref: delivery_items.delivery_id > deliveries.id
+Ref: delivery_items.medication_id > medications.id
