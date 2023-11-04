@@ -10,5 +10,3 @@ data class Drone(
     val batteryCapacity: Int,
     val state: DroneState
 )
-
-val droneStorage = mutableListOf<Drone>()
