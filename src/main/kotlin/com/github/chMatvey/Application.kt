@@ -1,6 +1,7 @@
 package com.github.chMatvey
 
-import com.github.chMatvey.plugins.*
+import com.github.chMatvey.plugins.configureRouting
+import com.github.chMatvey.plugins.configureSerialization
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
