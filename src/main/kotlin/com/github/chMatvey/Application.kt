@@ -1,5 +1,7 @@
 package com.github.chMatvey
 
+import com.github.chMatvey.dao.DatabaseFactory
+import com.github.chMatvey.dao.createDatabaseConfig
 import com.github.chMatvey.plugins.configureRouting
 import com.github.chMatvey.plugins.configureSerialization
 import io.ktor.server.application.*
@@ -11,4 +13,5 @@ fun main(args: Array<String>) {
 fun Application.module() {
     configureSerialization()
     configureRouting()
+    DatabaseFactory.init(createDatabaseConfig(environment.config))
 }
