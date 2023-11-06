@@ -4,6 +4,8 @@ val logback_version: String by project
 val exposed_version: String by project
 val postgresql_driver_version: String by project
 val flyway_version: String by project
+val koin_version: String by project
+val mockk_version: String by project
 
 plugins {
     kotlin("jvm") version "1.9.20"
@@ -23,7 +25,7 @@ application {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
 
 repositories {
@@ -39,7 +41,8 @@ dependencies {
     implementation("io.ktor:ktor-server-request-validation")
     implementation("io.ktor:ktor-server-status-pages")
 
-    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.insert-koin:koin-ktor:$koin_version")
+    implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
 
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
@@ -49,4 +52,6 @@ dependencies {
 
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("io.ktor:ktor-client-mock:$ktor_version")
+    testImplementation("io.mockk:mockk:${mockk_version}")
 }

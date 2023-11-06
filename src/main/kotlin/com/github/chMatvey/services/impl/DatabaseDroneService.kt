@@ -1,13 +1,13 @@
 package com.github.chMatvey.services.impl
 
-import com.github.chMatvey.dao.droneDAOFacade
+import com.github.chMatvey.dao.DroneDAOFacade
 import com.github.chMatvey.models.Drone
 import com.github.chMatvey.models.DroneState.IDLE
 import com.github.chMatvey.services.dto.request.DroneRegisterRequest
 import com.github.chMatvey.services.dto.response.DroneRegisterResponse
 import com.github.chMatvey.services.DroneService
 
-class DatabaseDroneService : DroneService {
+class DatabaseDroneService(private val droneDAOFacade: DroneDAOFacade) : DroneService {
     override suspend fun getAvailableDrones(): List<Drone> = droneDAOFacade.getAvailableDrones()
 
     override suspend fun getDroneById(droneId: Int): Drone? = droneDAOFacade.getDroneById(droneId)

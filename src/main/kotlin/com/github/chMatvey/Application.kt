@@ -2,10 +2,7 @@ package com.github.chMatvey
 
 import com.github.chMatvey.dao.DatabaseFactory
 import com.github.chMatvey.dao.createDatabaseConfig
-import com.github.chMatvey.plugins.configureRouting
-import com.github.chMatvey.plugins.configureSerialization
-import com.github.chMatvey.plugins.configureStatusPage
-import com.github.chMatvey.plugins.configureValidation
+import com.github.chMatvey.plugins.*
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
@@ -17,5 +14,6 @@ fun Application.module() {
     configureRouting()
     configureValidation()
     configureStatusPage()
+    configureCoin()
     DatabaseFactory.init(createDatabaseConfig(environment.config))
 }
