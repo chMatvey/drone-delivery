@@ -8,3 +8,8 @@ enum class DroneState {
     DELIVERED,
     RETURNING
 }
+
+fun toDroneState(value: String): DroneState {
+    return DroneState.entries.firstOrNull { it.name == value }
+        ?: throw IllegalArgumentException("Unknown drone state: $value")
+}

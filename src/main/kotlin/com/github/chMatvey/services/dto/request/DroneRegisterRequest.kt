@@ -1,4 +1,4 @@
-package com.github.chMatvey.routes.request
+package com.github.chMatvey.services.dto.request
 
 import com.github.chMatvey.models.DroneModel
 import kotlinx.serialization.Serializable
