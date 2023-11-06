@@ -35,7 +35,9 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
-    implementation("io.ktor:ktor-server-config-yaml:2.3.5")
+    implementation("io.ktor:ktor-server-config-yaml")
+    implementation("io.ktor:ktor-server-request-validation")
+    implementation("io.ktor:ktor-server-status-pages")
 
     implementation("ch.qos.logback:logback-classic:$logback_version")
 
